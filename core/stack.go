@@ -11,8 +11,8 @@ import (
 	"gvisor.dev/gvisor/pkg/tcpip/transport/tcp"
 	"gvisor.dev/gvisor/pkg/tcpip/transport/udp"
 
-	"github.com/xjasonlyu/tun2socks/v2/core/adapter"
-	"github.com/xjasonlyu/tun2socks/v2/core/option"
+	"github.com/RRBagauv/tun2socks/core/adapter"
+	"github.com/RRBagauv/tun2socks/core/option"
 )
 
 // Config is the configuration to create *stack.Stack.

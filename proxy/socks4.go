@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/xjasonlyu/tun2socks/v2/dialer"
-	M "github.com/xjasonlyu/tun2socks/v2/metadata"
-	"github.com/xjasonlyu/tun2socks/v2/proxy/proto"
-	"github.com/xjasonlyu/tun2socks/v2/transport/socks4"
+	"github.com/RRBagauv/tun2socks/dialer"
+	M "github.com/RRBagauv/tun2socks/metadata"
+	"github.com/RRBagauv/tun2socks/proxy/proto"
+	"github.com/RRBagauv/tun2socks/transport/socks4"
 )
 
 var _ Proxy = (*Socks4)(nil)

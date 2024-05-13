@@ -1,8 +1,8 @@
 package mirror
 
 import (
-	"github.com/xjasonlyu/tun2socks/v2/core/adapter"
-	"github.com/xjasonlyu/tun2socks/v2/tunnel"
+	"github.com/RRBagauv/tun2socks/core/adapter"
+	"github.com/RRBagauv/tun2socks/tunnel"
 )
 
 var _ adapter.TransportHandler = (*Tunnel)(nil)

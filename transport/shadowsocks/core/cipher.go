@@ -7,8 +7,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/xjasonlyu/tun2socks/v2/transport/shadowsocks/shadowaead"
-	"github.com/xjasonlyu/tun2socks/v2/transport/shadowsocks/shadowstream"
+	"github.com/RRBagauv/tun2socks/transport/shadowsocks/shadowaead"
+	"github.com/RRBagauv/tun2socks/transport/shadowsocks/shadowstream"
 )
 
 type Cipher interface {

@@ -8,7 +8,7 @@ import (
 	"github.com/google/uuid"
 	"go.uber.org/atomic"
 
-	M "github.com/xjasonlyu/tun2socks/v2/metadata"
+	M "github.com/RRBagauv/tun2socks/metadata"
 )
 
 type tracker interface {
