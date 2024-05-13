@@ -72,6 +72,7 @@ func start() error {
 		netstack,
 	} {
 		if err := f(_defaultKey); err != nil {
+			log.Errorf("[ENGINE] failed to initialize: %v", err)
 			return err
 		}
 	}
