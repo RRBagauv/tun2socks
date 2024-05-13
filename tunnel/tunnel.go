@@ -2,6 +2,7 @@ package tunnel
 
 import (
 	"github.com/RRBagauv/tun2socks/core/adapter"
+	"gvisor.dev/gvisor/pkg/log"
 )
 
 // Unbuffered TCP/UDP queues.
@@ -11,6 +12,9 @@ var (
 )
 
 func init() {
+	log.Infof(
+		"Start process",
+	)
 	go process()
 }
 
