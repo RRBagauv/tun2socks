@@ -1,6 +1,8 @@
 module github.com/RRBagauv/tun2socks
 
-go 1.22
+go 1.21.1
+
+toolchain go1.22.0
 
 require (
 	github.com/docker/go-units v0.5.0
