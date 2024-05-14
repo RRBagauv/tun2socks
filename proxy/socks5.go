@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/RRBagauv/tun2socks/log"
 	"io"
 	"net"
 
@@ -67,6 +68,7 @@ func (ss *Socks5) DialContext(ctx context.Context, metadata *M.Metadata) (c net.
 
 func (ss *Socks5) DialUDP(*M.Metadata) (_ net.PacketConn, err error) {
 	if ss.unix {
+		log.Debugf("%w when unix domain socket is enabled", errors.ErrUnsupported)
 		return nil, fmt.Errorf("%w when unix domain socket is enabled", errors.ErrUnsupported)
 	}
 
@@ -75,6 +77,7 @@ func (ss *Socks5) DialUDP(*M.Metadata) (_ net.PacketConn, err error) {
 
 	c, err := dialer.DialContext(ctx, "tcp", ss.Addr())
 	if err != nil {
+		log.Debugf("connect to %s: %w", ss.Addr(), err)
 		err = fmt.Errorf("connect to %s: %w", ss.Addr(), err)
 		return
 	}
@@ -106,11 +109,14 @@ func (ss *Socks5) DialUDP(*M.Metadata) (_ net.PacketConn, err error) {
 
 	addr, err := socks5.ClientHandshake(c, targetAddr, socks5.CmdUDPAssociate, user)
 	if err != nil {
+		log.Debugf("client handshake: %w", err)
+
 		return nil, fmt.Errorf("client handshake: %w", err)
 	}
 
 	pc, err := dialer.ListenPacket("udp", "")
 	if err != nil {
+		log.Debugf("listen packet: %w", err)
 		return nil, fmt.Errorf("listen packet: %w", err)
 	}
 
@@ -124,12 +130,14 @@ func (ss *Socks5) DialUDP(*M.Metadata) (_ net.PacketConn, err error) {
 
 	bindAddr := addr.UDPAddr()
 	if bindAddr == nil {
+		log.Debugf("invalid UDP binding address: %#v", addr)
 		return nil, fmt.Errorf("invalid UDP binding address: %#v", addr)
 	}
 
 	if bindAddr.IP.IsUnspecified() { /* e.g. "0.0.0.0" or "::" */
 		udpAddr, err := net.ResolveUDPAddr("udp", ss.Addr())
 		if err != nil {
+			log.Debugf("resolve udp address %s: %w", ss.Addr(), err)
 			return nil, fmt.Errorf("resolve udp address %s: %w", ss.Addr(), err)
 		}
 		bindAddr.IP = udpAddr.IP
